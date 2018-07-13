@@ -14,21 +14,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(path = "/users", method = RequestMethod.GET)
     public Collection<User> listUsers() {
         logger.info("Getting users");
-        List<User> users = userRepository.findAll();
+        List<User> users = userService.listUsers();
         return users;
     }
 
     @RequestMapping(path = "/users", method = RequestMethod.POST)
     public void createUser(@RequestBody User user) {
         logger.info("Creating user " + user.toString());
-        userRepository.save(user);
+        userService.addUser(user);
         // return new User("Nikhil", "Bokare");
     }
 }
