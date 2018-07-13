@@ -16,12 +16,14 @@ public class UserService {
 
     public void addUser(User user) {
         logger.info("Adding user");
+
         userRepository.save(user);
         logger.info("Added user");
     }
 
     public List<User> listUsers() {
         logger.info("Listing user");
+        logger.debug("THIS IS A DEBUG LOG");
         List<User> users = userRepository.findAll();
         logger.info("Got {} users", users.size());
         return users;
