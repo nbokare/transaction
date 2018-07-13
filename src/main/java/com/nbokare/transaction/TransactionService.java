@@ -15,10 +15,16 @@ public class TransactionService {
     @Autowired
     private TransactionRepository transactionRepository;
 
+    public void addTransaction(Transaction transaction) {
+        logger.info("Adding user");
+        transactionRepository.save(transaction);
+        logger.info("Added user");
+    }
+
     public Collection<Transaction> listTransactions() {
         logger.info("Getting all transactions");
         List<Transaction> transactions = transactionRepository.findAll();
-        logger.info("Got " + transactions.size() + " transactions");
+        logger.info("Got {} transactions", transactions.size());
         return transactions;
     }
 }
